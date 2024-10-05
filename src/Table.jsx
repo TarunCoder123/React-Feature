@@ -42,6 +42,23 @@ const Table = () => {
   const endIndex = Number(startIndex) + Number(limit);
   const displayData = data.slice(startIndex, endIndex);
 
+  const buttons = [];
+  for (let index = 0; index < Number(totalPage); index++) {
+    buttons.push(
+      <button
+        key={index + 1}
+        onClick={() => handlePageChange(index + 1)}
+        style={{
+          margin: '0 5px',
+          padding: '5px',
+          backgroundColor: currentPage === index + 1 ? 'lightblue' : 'gray',
+        }}
+      >
+        {index + 1}
+      </button>
+    );
+  }
+
   return (
     <div className="table-container">
       <h1>DATA OF THE API</h1>
@@ -79,11 +96,12 @@ const Table = () => {
         <button key={index+1} onClick={()=>handlePageChange(index+1)}>
             {index+1}
         </button> */}
-        {Array.from({ length: Number(totalPage) }).map((_, index) => (
+        {/* {Array.from({ length: Number(totalPage) }).map((_, index) => (
       <button key={index + 1} onClick={() => handlePageChange(index + 1)}>
         {index + 1}
-      </button>
-       ))}
+      </button> */}
+       {/* ))} */}
+       <div>{buttons}</div>
         <label>
           Limit:
           <select value={limit} onChange={handleLimitChange}>
